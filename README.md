@@ -1,193 +1,211 @@
-# MERN Task Manager
+# 🚀 MERN Task Manager App (Fullstack + DevOps)
 
-A MERN application for basic tasks management.
-![image](https://user-images.githubusercontent.com/86913048/227101123-f8a35258-9c21-4479-86e8-055659ab75e2.png)
+A production-ready **Task Manager Application** built with the MERN stack and deployed using modern DevOps practices including **Docker, VPS, Nginx, and CI/CD automation**.
 
-## Table of Contents
+---
 
-- [Features](#features)
-- [Tools and Technologies](#tools-and-technologies)
-- [Dependencies](#dependencies)
-- [Dev-dependencies](#dev-dependencies)
-- [Prerequisites](#prerequisites)
-- [Installation and setup](#installation-and-setup)
-- [Backend API](#backend-api)
-- [frontend pages](#frontend-pages)
-- [npm scripts](#npm-scripts)
-- [Useful Links](#useful-links)
-- [Contact](#contact)
+## 🧠 Tech Stack
 
-## Features
+### Frontend
 
-### User-side features
+* React.js
+* Axios
 
-- Signup
-- Login
-- Logout
-- Add tasks
-- View tasks
-- Update tasks
-- Delete tasks
+### Backend
 
-### Developer-side features
+* Node.js
+* Express.js
+* MongoDB (MongoDB Atlas)
 
-- Toasts for success and error messages
-- Form validations in frontend and backend
-- Fully Responsive Navbar
-- Token based Authentication
-- Use of 404 page for wrong urls
-- Relevant redirects
-- Global user state using Redux
-- Custom Loaders
-- Use of layout component for pages
-- Use of theme colors
-- No external CSS files needed (made using Tailwind CSS)
-- Usage of Tooltips
-- Dynamic document titles
-- Redirect to previous page after login
-- Use of various React hooks
-- Custom hook also used (useFetch)
-- Routes protection
-- Middleware for verifying the user in backend
-- Use of different HTTP status codes for sending responses
-- Standard pratices followed
+### DevOps
 
-## Tools and Technologies
+* Docker
+* Docker Hub
+* GitHub Actions (CI/CD)
+* Nginx (Reverse Proxy)
+* VPS (Ubuntu)
 
-- HTML
-- CSS
-- Javascript
-- Tailwind CSS
-- Node.js
-- Express.js
-- React
-- Redux
-- Mongodb
+---
 
-## Dependencies
+## ⚙️ Features
 
-Following are the major dependencies of the project:
+* 🔐 User Authentication (JWT)
+* 📝 Task CRUD (Create, Read, Update, Delete)
+* 🔒 Protected Routes
+* 🌐 REST API
+* 📦 Dockerized Backend
+* 🚀 Auto Deploy CI/CD
+* 🌍 Production-ready deployment
 
-- axios
-- react
-- react-dom
-- react-redux
-- react-router-dom
-- react-toastify
-- redux
-- redux-thunk
-- bcrypt
-- cors
-- dotenv
-- express
-- jsonwebtoken
-- mongoose
+---
 
-## Dev-dependencies
+## 🏗️ Architecture
 
-Following are the major dev-dependencies of the project:
+```
+User → Nginx (Port 80)
+         ↓
+     Backend (Docker :5000)
+         ↓
+   MongoDB Atlas (Cloud DB)
+```
 
-- nodemon
-- concurrently
+---
 
-## Prerequisites
+## 🚀 Live Access
 
-- Node.js must be installed on the system.
-- You should have a MongoDB database.
-- You should have a code editor (preferred: VS Code)
+```
+http://YOUR_VPS_IP
+```
 
-## Installation and Setup
+---
 
-1. Install all the dependencies
+## 📦 Project Structure
 
-   ```sh
-   npm run install-all
-   ```
+```
+TASK-MANAGER-APP/
+│
+├── backend/
+│   ├── routes/
+│   ├── models/
+│   ├── app.js
+│   └── Dockerfile
+│
+├── frontend/
+│   ├── src/
+│   └── build/
+│
+└── .github/workflows/
+    └── deploy.yml
+```
 
-2. Create a file named ".env" inside the backend folder. Add data from .env.example file and substitute your credentials there.
+---
 
-3. Start the application
+## 🐳 Docker Setup (Backend)
 
-   ```sh
-   npm run dev
-   ```
+### Build Image
 
-4. Go to http://localhost:3000
+```bash
+docker build -t backend-app ./backend
+```
 
-## Backend API
+### Run Container
 
-<pre>
-- POST     /api/auth/signup
-- POST     /api/auth/login
-- GET      /api/tasks
-- GET      /api/tasks/:taskId
-- POST     /api/tasks
-- PUT      /api/tasks/:taskId
-- DELETE   /api/tasks/:taskId
-- GET      /api/profile
-</pre>
+```bash
+docker run -d -p 5000:5000 \
+--env-file .env \
+-e NODE_ENV=production \
+--name backend backend-app
+```
 
-## Frontend pages
+---
 
-<pre>
-- /                 Home Screen (Public home page for guests and private dashboard (tasks) for logged-in users)
-- /signup           Signup page
-- /login            Login page
-- /tasks/add        Add new task
-- /tasks/:taskId    Edit a task
-</pre>
+## ☁️ Deployment (VPS)
 
-## npm scripts
+* VPS: Ubuntu 22.04
+* Docker installed
+* Nginx configured as reverse proxy
 
-At root:
+### Access:
 
-- `npm run dev`: Starts both backend and frontend
-- `npm run dev-server`: Starts only backend
-- `npm run dev-client`: Starts only frontend
-- `npm run install-all`: Installs all dependencies and dev-dependencies required at root, at frontend and at backend.
+```
+http://IP_VPS
+```
 
-Inside frontend folder:
+---
 
-- `npm start`: Starts frontend in development mode
-- `npm run build`: Builds the frontend for production to the build folder
-- `npm test`: Launches the test runner in the interactive watch mode
-- `npm run eject`: This will remove the single build dependency from the frontend.
+## 🔁 CI/CD Pipeline (GitHub Actions)
 
-Inside backend folder:
+### Trigger:
 
-- `npm run dev`: Starts backend using nodemon.
-- `npm start`: Starts backend without nodemon.
+```bash
+git push origin main
+```
 
-## Useful Links
+### Workflow:
 
-- This project
+1. Build Docker Image
+2. Push to Docker Hub
+3. SSH to VPS
+4. Pull latest image
+5. Stop old container
+6. Run new container
 
-  - Github Repo: https://github.com/aayush301/MERN-task-manager
+---
 
-- Official Docs
+## 🔐 Environment Variables
 
-  - Reactjs docs: https://reactjs.org/docs/getting-started.html
-  - npmjs docs: https://docs.npmjs.com/
-  - Mongodb docs: https://docs.mongodb.com/manual/introduction/
-  - Github docs: https://docs.github.com/en/get-started/quickstart/hello-world
+Create `.env` inside `backend/`:
 
-- Youtube tutorials
+```env
+MONGODB_URL=your-mongodb-url
+ACCESS_TOKEN_SECRET=your-secret-key
+```
 
-  - Expressjs: https://youtu.be/L72fhGm1tfE
-  - React: https://youtu.be/EHTWMpD6S_0
-  - Redux: https://youtu.be/1oU_YGhT7ck
+⚠️ Never commit `.env` to GitHub
 
-- Download links
+---
 
-  - Nodejs download: https://nodejs.org/
-  - VS Code download: https://code.visualstudio.com/
+## 🧪 Testing Endpoint (CI/CD Validation)
 
-- Cheatsheets
-  - Git cheatsheet: https://education.github.com/git-cheat-sheet-education.pdf
-  - VS Code keyboard shortcuts: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
-  - CSS Selectors Cheatsheet: https://frontend30.com/css-selectors-cheatsheet/
+```
+GET /test
+```
 
-## Contact
+Response:
 
-- Email: aayush5521186@gmail.com
-- Linkedin: https://www.linkedin.com/in/aayush12/
+```json
+{
+  "msg": "CI/CD WORKING 🔥"
+}
+```
+
+---
+
+## 📌 Checkpoints
+
+### ✅ Local Development
+
+* Backend & Frontend running
+* MongoDB connected
+* API tested
+
+### ✅ Dockerized
+
+* Backend containerized
+* Running locally
+
+### ✅ Production Deployment
+
+* VPS running Docker container
+* Frontend served via backend
+* Nginx reverse proxy working
+
+### ✅ CI/CD Ready
+
+* Auto deploy on push
+* Docker Hub integrated
+* No manual deployment needed
+
+---
+
+## 🔥 Future Improvements
+
+* HTTPS (Let's Encrypt SSL)
+* Custom Domain
+* Docker Compose (multi-container)
+* Monitoring (Prometheus / Grafana)
+* Zero-downtime deployment
+
+---
+
+## 👨‍💻 Author
+
+**Secondbay (DevOps Enthusiast)**
+
+---
+
+## ⭐ Notes
+
+This project demonstrates a **real-world DevOps workflow**, from development to production deployment with automation.
+
+If you find this useful, consider giving it a ⭐ on GitHub!
