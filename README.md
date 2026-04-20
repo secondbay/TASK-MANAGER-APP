@@ -200,12 +200,6 @@ Response:
 
 ## 👨‍💻 Author
 
-**Secondbay (DevOps Enthusiast)**
+**IBNU BAYHAQI (DevOps Enthusiast)**
 
 ---
-
-## ⭐ Notes
-
-This project demonstrates a **real-world DevOps workflow**, from development to production deployment with automation.
-
-If you find this useful, consider giving it a ⭐ on GitHub!
