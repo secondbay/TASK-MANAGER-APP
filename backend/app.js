@@ -21,6 +21,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/profile", profileRoutes);
 
+// test ci/cd backend
+app.get("/test", (req, res) => {
+  res.json({
+    msg: "CI/CD WORKING 🔥"
+  });
+});
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../frontend/build")));
   app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "../frontend/build/index.html")));
